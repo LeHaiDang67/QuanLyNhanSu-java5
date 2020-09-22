@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{layouts/admin.html}"
+>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<div layout:fragment="content">
+<article class="col-sm-12">
+     <a class="nav-link" th:href="@{/staffs/add}">Add new Staff</a>
+     <form class="form-inline my-2 my-lg-0" th:action="@{/staffs/find}" >
+		<label>Name:</label> <input class="form-control mr-sm-2" type="text" name="name" /> 
+		<input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Find" />
+	 </form>
+	<hr>
+	<table class="table table-hover">
+		<tr>
+			<td>Staff ID</td>
+			<td>Name</td>
+			<td>Photo</td>
+			<td>Birthday</td>
+			<td>Department ID</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr th:each="item : ${staffs}">
+			<td th:text="${item.id}"></td>
+			<td th:text="${item.name}"></td>
+			<td th:text="${item.photo}"></td>
+			<td th:text="${item.birthday}"></td>
+			<td th:text="${item.depart.id}"></td>
+			<td><a th:href="@{'/staffs/edit/'+${item.id}}">Edit</a> <a
+				th:href="@{'/staffs/delete/'+${item.id}}">Delete</a></td>
+		</tr>
+	</table>
+</article>
+</div>
+</body>
+</html>

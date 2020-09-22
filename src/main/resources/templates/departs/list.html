@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{layouts/admin.html}"
+>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+</head>
+<body>
+<div layout:fragment="content">
+<article class="col-sm-12">
+     <br>
+	<form class="form-inline my-2 my-lg-0" th:action="@{/departs/find}">
+		<label>Name: </label> 
+		<input type="text" class="form-control mr-sm-2" name="name" /> 
+		<input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Find" />
+	</form>
+	<hr>
+	<table class="table table-hover">
+		<tr>
+			<td>Department ID</td>
+			<td>Name</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr th:each="item : ${departs}">
+			<td th:text="${item.id}"></td>
+			<td th:text="${item.name}"></td>
+			<td><a th:href="@{'/departs/edit/'+${item.id}}">Edit</a> <a
+				th:href="@{'/departs/delete/'+${item.id}}">Delete</a></td>
+		</tr>
+	</table>
+</article>
+</div>
+</body>
+</html>

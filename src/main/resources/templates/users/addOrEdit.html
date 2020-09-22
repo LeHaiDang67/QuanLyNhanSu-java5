@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{layouts/admin.html}"
+>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<div layout:fragment="content">
+<article class="col-sm-12">
+   <div class="container-fluid">
+		<div class="row">
+			<div class="col">
+				<form th:action="@{/users/saveOrUpdate}" method="post"
+					th:object="${user}" enctype="multipart/form-data">
+					<div class="form-group" th:if="${id>0}">
+						<label>Id:</label> <input type="text" th:field="*{id}"
+							class="form-control" />
+					</div>
+					
+					<div class="form-group">
+						<label>User name:</label> <input type="text" th:field="*{username}"
+							class="form-control" />
+						<br/>
+						
+					</div>
+					<div class="form-group">
+						<label>Password:</label> <input type="text" th:field="*{password}"
+							class="form-control" /><br/>
+						
+					</div>
+					<div class="form-group">
+						<label>Email:</label> <input type="email" th:field="*{email}"
+							class="form-control" /><br/>
+						
+					</div>
+				
+					<input type="submit" value="Add" th:if="${id<=0}" class="btn-primary" />
+					<input type="submit" value="Update" th:if="${id>0}" class="btn-primary" />
+				</form>
+				 <a class="nav-link" th:href="@{/users/list}">List</a>
+			</div>
+		</div>
+	</div>
+	</article>
+	</div>
+</body>
+</html>
